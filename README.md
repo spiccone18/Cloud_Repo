@@ -9,7 +9,7 @@ These files have been tested and used to generate a live ELK deployment on Azure
   - /Users/spiccone/Downloads/install-elk.yml
 
 This document contains the following details:
-- Description of the Topologu
+- Description of the Topology
 - Access Policies
 - ELK Configuration
   - Beats in Use
@@ -21,12 +21,10 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-Load balancing ensures that the applications will be highly secured and traffic is distributed, in addition to restricting access to the network.
-- _TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?_
+Load balancing ensures that the applications will be highly secured and traffic is distributed, in addition to restricting access to the network. The purpose of a jump box in this environment is to provide administrators with a low risk proxy to manage sensitive assets, i.e. the webserver and ELK server. 
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the file system and system configuration.
-- _TODO: What does Filebeat watch for?_ collects data about the file system 
-- _TODO: What does Metricbeat record?_ metric beat collects information on machine metrics, such as uptime 
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the file system and system configuration. The ELK server is also integrated with Filebeat, a lightweight agen that sits on the webserver and collects data about the file systems. Metric beat is also part of the ELK stack and collect information on the machine metrics, such as uptime, CPU and memory. 
+
 
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
@@ -43,11 +41,10 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the jump box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- _TODO: Add whitelisted IP addresses_ - 72.66.118.174
+Only the jump box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses: 72.66.118.174
 
-Machines within the network can only be accessed by the Ansible container 
-- _TODO: Which machine did you allow to access your ELK VM? What was its IP address?_  10.0.0.4
+Machines within the network can only be accessed by the Ansible container. Allowed IP addresses: 
+10.0.0.4
 
 A summary of the access policies in place can be found in the table below.
 
@@ -60,15 +57,14 @@ A summary of the access policies in place can be found in the table below.
 
 ### Elk Configuration
 
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-- _TODO: What is the main advantage of automating configuration with Ansible?_ Anisble's main advantage is that it saves architects time in configuration by the use of easily re-useable playbooks. 
+Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because it saves time in configuration by the use of easily re-usable playbooks. There is no custom code needed, you simply write the tasks required. 
 
 The playbook implements the following tasks:
 - Install docker
-- Install pip3 which is the package instlaler for Python
+- Install pip3 which is the package installer for Python
 - Install the Docker python module
 - Set the vm.max_map_count to 262144 to allow the the target VM to use more memory
-- download and launch the docker ELK container 
+- Download and launch the docker ELK container 
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
@@ -76,13 +72,13 @@ Screenshots: user/spiccone/Downloads/README 2/Images
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- _TODO: 10.0.0.9 and 10.0.0.10
+- 10.0.0.9 and 10.0.0.10
 
 We have installed the following Beats on these machines:
-- _TODO: Filebeat and Metricbeat
+- Filebeat and Metricbeat
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: Filebeat fowards and centralizes log data to elasitcsearch or Logstash. Filebeat moitors log files or locations we specify so we keep an accurate eye on actions, commands, updates being done on the system. Metricbeat periodically collects metrics from the OS and from other services running on the server. By using Metricbeat we have a better idea which servers are running, which arent, CPU usage, etc. 
+- Filebeat fowards and centralizes log data to elasitcsearch or Logstash. Filebeat moitors log files or locations we specify so we keep an accurate eye on actions, commands, updates being done on the system. Metricbeat periodically collects metrics from the OS and from other services running on the server. By using Metricbeat we have a better idea which servers are running, which arent, CPU usage, etc. 
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
